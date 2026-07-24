@@ -49,7 +49,8 @@ for (let i=0; i<hobbies.length; i++) {
     console.log(hobbies[i]);
 }
 
-let tasks=[];
+let savedTasks = localStorage.getItem("myTasks");
+let tasks = savedTasks ? JSON.parse(savedTasks) : [];
 
 let taskInput = document.getElementById("taskInput");
 let addTaskBtn = document.getElementById("addTaskBtn");
@@ -63,19 +64,8 @@ function addTask() {
     tasks.push(taskText);
     taskInput.value = "";
     renderTasks();
+    saveTasks();
 }
-
-function renderTasks() {
-    taskList.innerHTML = "";
-
-    for (let task of tasks) {
-        let li = document.createElement("li");
-        li.textContent = task;
-        taskList.appendChild(li);
-    }
-}
-
-addTaskBtn.addEventListener("click", addTask);
 
 function renderTasks() {
     taskList.innerHTML = "";
@@ -89,11 +79,22 @@ function renderTasks() {
         deleteBtn.style.marginLeft = "10px";
 
         deleteBtn.addEventListener("click", function() {
-            tasks.splice(i, 1);
-            renderTasks();
+        tasks.splice(i, 1);
+        renderTasks();
+        saveTasks();
         });
 
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
     }
 }
+
+function saveTasks() {
+    localStorage.setItem("myTasks", JSON.stringify(tasks));
+}
+
+addTaskBtn.addEventListener("click", addTask);
+
+renderTasks();
+
+
