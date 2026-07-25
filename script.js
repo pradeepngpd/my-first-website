@@ -97,4 +97,59 @@ addTaskBtn.addEventListener("click", addTask);
 
 renderTasks();
 
+let cityInput = document.getElementById("cityInput");
+let getWeatherBtn = document.getElementById("getWeatherBtn");
+let weatherResult = document.getElementById("weatherResult");
 
+async function getWeather() {
+    let city = cityInput.value;
+
+    if (city === "") {
+        return;
+    }
+
+    weatherResult.textContent = "Loading...";
+
+    let geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name=" + city;
+    let geoResponse = await fetch(geoUrl);
+    let geoData = await geoResponse.json();
+
+    console.log(geoData);
+
+}
+
+getWeatherBtn.addEventListener("click", getWeather);
+
+async function getWeather() {
+    let city = cityInput.value;
+
+    if (city === "") {
+        return;
+    }
+
+    weatherResult.textContent = "Loading...";
+
+    let geoUrl = "https:/geocoding-api.open-meteo.com/v1/search?name=" + city;
+    let geoResponse = await fetch(geoUrl);
+    let geoData = await geoResponse.json();
+
+    if (!geoData.results) {
+        weatherResult.textContent = "City not found.";
+    }
+
+    let lat = geoData.results[0].latitude;
+    let lon = geoData.results[0].longitude;
+    let cityName = geoData.results[0].name;
+
+    console.log("lat:", lat, "lon", lon);
+
+    let weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current_weather=true";
+    let weatherResponse = await fetch(weatherUrl);
+    let weatherData = await weatherResponse.json();
+
+    console.log(weatherData);
+
+    let temp = weatherData.current_weather.temperature;
+    weatherResult.textContent = cityName + ": " + temp + "°C";
+
+}
