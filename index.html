@@ -1,61 +1,83 @@
 <!doctype html>
+
 <html>
+  
   <head>
     <title>My First Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
   </head>
+  
   <body>
+    
     <header>
-      <h1>Hello, World!</h1>
+      <h2>Learning Coding!</h2>
     </header>
-    <nav>
-      <a href="#foods">Foods</a>
-      <a href="#hobbies">Hobbies</a>
-    </nav>
-    <main>
-      <p>This is my my very first web page.</p>
+
+  <main>
+      <p>This is my my very first web page created while learning coding.</p>
       <p>
-        Finally i have started the web development course using claude.ai
-        platform and i would be thanksful for this teaching.
+        During learning, i will try to add projects which is useful on day to
+        day basis.
       </p>
+
       <button id="myButton">Click Me!</button>
+      
       <p id="message"></p>
       <section id="todo-app">
-        <h2>My To-Do List</h2>
-        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Enter a new task" />
         <button id="addTaskBtn">Add Task</button>
         <ul id="taskList"></ul>
       </section>
-      <div class="food-hobbies-wrapper"> 
-      <section id="foods">
-        <h2>My Favourite Foods</h2>
-        <ol>
-          <li>Pizza</li>
-          <li>Biriyani</li>
-          <li>Ice Cream</li>
-        </ol>
-      </section>
-      <section id="hobbies">
-        <h2>My Hobbies</h2>
-        <ul>
-          <li>Playing Chess</li>
-          <li>Learning Coding</li>
-          <li>Getting info about good food and healthy lifestyle</li>
-        </ul>
-        <a href="https://www.youtube.com">Click here to visit Youtube</a>
-      </section>
+    
+      <nav>
+      <a href="#learning">Learning</a>
+      <a href="#hobbies">Hobbies</a>
+      </nav>
+    
+      <div class="learning-hobbies-wrapper">
+        <section id="learning">
+          <h2>Currently Learning</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Java Script</li>
+          </ol>
+        </section>
+        
+        <section id="hobbies">
+          <h2>My Hobbies</h2>
+          <ul>
+            <li>Playing Chess</li>
+            <li>Learning Coding</li>
+            <li>Getting info about good food and healthy lifestyle</li>
+          </ul>
+        </section>
       </div>
+
+      <nav>
+      <a href="#weather">Weather</a>
+      </nav>
+
       <section id="weather-app">
         <h2>Weather Checker</h2>
-        <input type="text" id="cityInput" placeholder="Enter a city name">
+        <input type="text" id="cityInput" placeholder="Enter a city name" />
         <button id="getWeatherBtn">Get Weather</button>
         <p id="weatherResult"></p>
       </section>
+      
+      <a href="https://youtube.com/@pradeepkumar-rw3rd?si=A2vtfuWWrrfOVa_g"
+        >Click here to visit my Youtube page.</a>
+    
     </main>
+    
     <footer>
       <p>Made by Pradeep Kumar - 2026</p>
     </footer>
+   
     <script src="script.js"></script>
+  
   </body>
+
 </html>

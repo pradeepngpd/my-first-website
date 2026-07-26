@@ -39,14 +39,14 @@ let button = document.getElementById("myButton");
 let message = document.getElementById("message");
 
 button.addEventListener("click", function() {
-    message.textContent = "You clicked the button, Pradeep!";
+    message.textContent = "Surprise!, my first user interactive button";
 });
 message.style.color = "red";
 
-let hobbies = ["Playing Chess", "Learning Coding", "Getting info about good food and healthy lifestyle"];
-console.log(hobbies.length);
-for (let i=0; i<hobbies.length; i++) {
-    console.log(hobbies[i]);
+let learning = ["HTML", "CSS", "Java Script"];
+console.log(learning.length);
+for (let i=0; i<learning.length; i++) {
+    console.log(learning[i]);
 }
 
 let savedTasks = localStorage.getItem("myTasks");
@@ -101,6 +101,9 @@ let cityInput = document.getElementById("cityInput");
 let getWeatherBtn = document.getElementById("getWeatherBtn");
 let weatherResult = document.getElementById("weatherResult");
 
+
+getWeatherBtn.addEventListener("click", getWeather);
+
 async function getWeather() {
     let city = cityInput.value;
 
@@ -114,27 +117,9 @@ async function getWeather() {
     let geoResponse = await fetch(geoUrl);
     let geoData = await geoResponse.json();
 
-    console.log(geoData);
-
-}
-
-getWeatherBtn.addEventListener("click", getWeather);
-
-async function getWeather() {
-    let city = cityInput.value;
-
-    if (city === "") {
-        return;
-    }
-
-    weatherResult.textContent = "Loading...";
-
-    let geoUrl = "https:/geocoding-api.open-meteo.com/v1/search?name=" + city;
-    let geoResponse = await fetch(geoUrl);
-    let geoData = await geoResponse.json();
-
     if (!geoData.results) {
         weatherResult.textContent = "City not found.";
+        return;
     }
 
     let lat = geoData.results[0].latitude;
