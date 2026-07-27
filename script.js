@@ -1,4 +1,4 @@
-console.log("Hello from JavaScript!");
+console.log("Hello from JavaScript to Console Read Page!");
 let name = "Pradeep";
 let age = 41;
 let isLearningToCode = true;
@@ -13,8 +13,9 @@ let y = 3;
 console.log(x + y);
 console.log(x - y);
 console.log(x * y);
+console.log(x * (y/2));
 
-let greeting = "Hello, " + name + "!";
+let greeting = "Hello, " + name + " hope you are doing well" + "!";
 console.log(greeting);
 
 function greet(personName) {
@@ -22,11 +23,22 @@ function greet(personName) {
 }
 greet("Pradeep");
 
+function test(javascript) {
+    console.log("javascript console text reading text!")
+}
+test("javascript");
+
 function add(a, b) {
     return a + b;
 }
 let sum = add(5, 7);
 console.log(sum);
+
+function subtract(a, b) {
+    return a - b;
+}
+let difference = subtract(1450, 1345)
+console.log("1450-135=" + difference);
 
 let number = 10;
 if (number % 2 === 0) {
@@ -35,13 +47,30 @@ if (number % 2 === 0) {
     console.log(number + " is odd");
 }
 
+function oddeven(a) {
+    if (a % 2 === 0) {
+        return a + " is even"
+    } else {
+        return a + " is odd"
+    }
+}
+let oddevenfinder = oddeven(155);
+console.log(oddevenfinder);
+
+
 let button = document.getElementById("myButton");
 let message = document.getElementById("message");
-
 button.addEventListener("click", function() {
     message.textContent = "Surprise!, my first user interactive button";
+    message.style.color = "red";
 });
-message.style.color = "red";
+
+
+let testButton = document.getElementById("testButton");
+testButton.addEventListener("click", function() {
+    message.textContent = "Test click button code wrote on my own"
+    message.style.color = "blue"
+});
 
 let learning = ["HTML", "CSS", "Java Script"];
 console.log(learning.length);
