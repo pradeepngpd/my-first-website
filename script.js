@@ -92,10 +92,10 @@ function addTask() {
     }
     tasks.push(taskText);
     taskInput.value = "";
-    renderTasks();
+    showTasks();
     saveTasks();
 }
-function renderTasks() {
+function showTasks() {
     taskList.innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         let li = document.createElement("li");
@@ -107,7 +107,7 @@ function renderTasks() {
 
         deleteBtn.addEventListener("click", function() {
         tasks.splice(i, 1);
-        renderTasks();
+        showTasks();
         saveTasks();
         });
 
@@ -119,7 +119,7 @@ function saveTasks() {
     localStorage.setItem("myTasks", JSON.stringify(tasks));
 }
 addTaskBtn.addEventListener("click", addTask);
-renderTasks();
+showTasks();
 
 let cityInput = document.getElementById("cityInput");
 let getWeatherBtn = document.getElementById("getWeatherBtn");
@@ -169,8 +169,7 @@ function showItems() {
     for (let i=0; i<items.length; i++) {
         let li = document.createElement("li");
         li.textContent = items[i];
-        shoppingListElement.appendChild(li);
-
+        
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.style.marginLeft = "10px";
@@ -181,6 +180,7 @@ function showItems() {
             saveItems();
         });
         li.appendChild(deleteBtn);
+        shoppingListElement.appendChild(li);
     }
 }
 
