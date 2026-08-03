@@ -72,8 +72,8 @@ testButton.addEventListener("click", function() {
     message.style.color = "blue"
 });
 
-let learning = ["HTML", "CSS", "Java Script"];
-console.log(learning.length);
+let learning = ["Learning HTML listed below ", "HTML", "CSS", "Java Script"];
+console.log("Total words count is " + learning.length);
 for (let i=0; i<learning.length; i++) {
     console.log(learning[i]);
 }
@@ -95,10 +95,8 @@ function addTask() {
     renderTasks();
     saveTasks();
 }
-
 function renderTasks() {
     taskList.innerHTML = "";
-
     for (let i = 0; i < tasks.length; i++) {
         let li = document.createElement("li");
         li.textContent = tasks[i];
@@ -117,22 +115,16 @@ function renderTasks() {
         taskList.appendChild(li);
     }
 }
-
 function saveTasks() {
     localStorage.setItem("myTasks", JSON.stringify(tasks));
 }
-
 addTaskBtn.addEventListener("click", addTask);
-
 renderTasks();
 
 let cityInput = document.getElementById("cityInput");
 let getWeatherBtn = document.getElementById("getWeatherBtn");
 let weatherResult = document.getElementById("weatherResult");
-
-
 getWeatherBtn.addEventListener("click", getWeather);
-
 async function getWeather() {
     let city = cityInput.value;
 
@@ -165,5 +157,51 @@ async function getWeather() {
 
     let temp = weatherData.current_weather.temperature;
     weatherResult.textContent = cityName + ": " + temp + "°C";
-
 }
+
+let savedItems = localStorage.getItem("myItems");
+let items = savedItems ? JSON.parse(savedItems) : [];
+
+let shoppingListElement = document.getElementById("shoppingList");
+
+function showItems() {
+    shoppingListElement.innerHTML = "";
+    for (let i=0; i<items.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = items[i];
+        shoppingListElement.appendChild(li);
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.style.marginLeft = "10px";
+
+        deleteBtn.addEventListener("click", function() {
+            items.splice(i, 1);
+            showItems();
+            saveItems();
+        });
+        li.appendChild(deleteBtn);
+    }
+}
+
+let itemInput = document.getElementById("itemInput");
+let addItemBtn = document.getElementById("addItemBtn");
+
+function addItem() {
+    let itemText = itemInput.value;
+    if (itemText === "") {
+        return;
+    }
+    items.push(itemText);
+    itemInput.value = "";
+    showItems();
+    saveItems();
+}
+
+addItemBtn.addEventListener("click", addItem);
+
+function saveItems() {
+    localStorage.setItem("myItems", JSON.stringify(items));
+}
+
+showItems();
